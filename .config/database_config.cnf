@@ -1,0 +1,6 @@
+[client]
+database = competition
+user = dusza
+password = KzxDwf9Gr4$hSdjE
+default_character_set = utf8
+ssl_mode = disabled

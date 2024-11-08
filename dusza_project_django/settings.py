@@ -11,10 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
@@ -37,6 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dusza_app'
 ]
 
 MIDDLEWARE = [
@@ -76,10 +75,14 @@ WSGI_APPLICATION = 'dusza_project_django.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'USER' : 'dusza',
-        'PASSWORD' :   '',
-        'HOST' : 'localhost',
-        'PORT': '3306'
+        'NAME' : 'competition',
+        'USER' : 'root',
+        'PASSWORD' : '',
+        'HOST' : '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS' : {
+            'init_command' : 'SET sql_mode=STRICT_TRANS_TABLES'
+        }
     }
 }
 
