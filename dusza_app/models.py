@@ -42,8 +42,8 @@ class User(AbstractBaseUser):
     objects = CustomUserManager()
     def save(self, *args, **kwargs):
         if(self.password):
-            self.password = make_password(self.password, salt='^13_2',
-                                          hasher='pbkdf2_sha256')
+            self.password = make_password(self.password, salt='$^13_2',
+                                          hasher='')
         super().save(*args, **kwargs)
     def has_perm(self, perm, obj=None):
         return self.is_superuser

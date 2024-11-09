@@ -14,6 +14,7 @@ from .models import Category, ProgLangs, Team, User
 
 @csrf_protect
 def login(request : http.HttpRequest) -> http.HttpResponse:
+    request.user.clean()
     match(request.method):
         case "GET":
             form = userForm()
@@ -53,16 +54,20 @@ def TeamView(request: http.HttpRequest) -> http.HttpResponse:
         username=request.user.username)
     return render(request, "dusza_app/team.html", {'teams' : team, 'members' : members})
 
+@login_required
 def SchoolView(request: http. HttpRequest) -> http.HttpResponse:
     #type ingore
     return http.HttpResponse()
 
+@login_required
 def OrganizerView(request: http. HttpRequest) -> http.HttpResponse:
     user = request.user
     categories = Category.objects.get()
     progamming_languages = ProgLangs.objects.get()
     return render(request, "dusza_app/organizer.html", {'categories' : categories, 'programming_languages' : progamming_languages})
 
+def modify(request: http.HttpRequest, source_type = "", id = 0) -> http.HttpResponse:
+    return http.HttpResponse()
 
 def csrf_failure(request: http. HttpRequest) -> http.HttpResponse:
     return http.HttpResponse()

@@ -34,3 +34,8 @@ class SchoolForm(forms.Form):
     This form is responsible for editing an existing school's data  
     '''
     pass
+class CategoryForm(forms.Form):
+    category = forms.CharField(max_length=255)
+
+class ProgLangForm(forms.Form):
+    programming_language = forms.CharField(max_length=30)

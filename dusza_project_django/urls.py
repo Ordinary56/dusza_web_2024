@@ -22,5 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.login, name="login"),
     path("register/", views.register, name="register"),
-    path("team/", views.TeamView, name="team")
+    path("team/", views.TeamView, name="team"),
+    path("modify/<str:source_type>/<int:id>/", views.modify, name="modify")
 ]
