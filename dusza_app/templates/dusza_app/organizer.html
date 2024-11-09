@@ -1,1 +1,80 @@
 {% extends "dusza_app/base_template.html"%}
+{%block navbar%}
+<li class="nav-item">
+    <a href="" class="text-decoration-none text-white">Új csapat regisztrálása</a>
+</li>
+<li class="nav-item">
+    <form action="{% url 'logout'%}" method="post">
+        {% csrf_token%}
+        <button type="submit" class="btn my-0 text-white flex-end">Kijelentkezés</button>
+    </form>
+</li>
+{%endblock%}
+
+{%block content %}
+<h2 class="my-5 text-center">Programozási nyelvek</h2>
+<table class="table table-dark m-auto w-50 ">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Programozási nyelv</th>
+        <th scope="col">Műveletek</th>
+    </tr>
+</thead>
+<tbody>
+{%for language in programming_languages%}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{language.language}}</td>
+        <td>
+            <ul class="d-inline-flex gap-5 justify-content-center" style="list-style-type: none;">
+                    <li>
+                        <a href="">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </li>
+            </ul>
+        </td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+<h2 class="my-5 text-center">Kategóriák</h2>
+<table class="table table-dark m-5 m-auto w-80">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Kategória</th>
+        <th scope="col">Műveletek</th>
+    </tr>
+</thead>
+<tbody>
+{%for category in categories%}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{category.category}}</td>
+        <td>
+            <ul class="d-inline-flex">
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </li>
+            </ul>
+        </td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+{% endblock %}

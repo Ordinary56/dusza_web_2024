@@ -7,10 +7,12 @@
 </li>
 
 <li class="nav-item">
-    <a href="" class="text-decoration-none text-white">Új csapat regisztrálása</a>
+    <a href="/modify" target="_blank" class="text-decoration-none text-white">Új csapat regisztrálása</a>
 </li>
 <li class="nav-item">
-    <button class="btn my-0 text-white flex-end">Kijelentkezés</button>
+    <form action="{% url 'logout' %}" method="POST">
+        <button type="submit" class="btn btn-danger">Kijelentkezés</button>
+    </form>
 </li>
 {% endblock %}
 

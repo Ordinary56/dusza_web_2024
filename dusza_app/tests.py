@@ -1,17 +1,18 @@
 from django.test import TestCase
-
+from django.contrib.auth.models import User
 # Create your tests here.
 #TODO: add test
 
-
+'''
+Test adding new user 
+'''
 def testNewUser() -> None:
-    '''
-    Test if the new user has been succesfully registered
-    '''
+    new_user = User.objects.create_user()
     pass
 
+'''
+    Test user authentication
+'''
 def testLogin() -> None:
-    '''
-    Test if the user can successfully register with the given parameters
-    '''
+    
     pass
