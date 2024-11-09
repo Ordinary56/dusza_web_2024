@@ -1,22 +1,23 @@
 {% extends "dusza_app/base_template.html" %}
-
+{% load static %}
 {% block content%}
-<div class="container-fluid d-flex m-5 justify-content-center">
+<div class="container-fluid d-flex m-5 justify-content-center align-items-center">
     <form method="post" action="/">
         {% csrf_token %}
         <h2 class="text-center mb-4">Bejelentkezés</h2>
-        <div class="mb-3">
+        <div class="mb-3 p-2">
             {{form.username.label}}
             {{form.username}}
         </div>
-        <div class="mb-3">
+        <div class="mb-3 p-2">
             {{form.password.label}}
             {{form.password}}
         </div>
-        <button type="submit" class="btn btn-primary justify-self-center">Bejelentkezés</button>
+        <button type="submit" class="login_register_button btn offset-3 p-2">Bejelentkezés</button>
         <div class="text-center mt-3">
             <a href="{% url 'register' %}">Regisztráció</a>
         </div>
     </form>
 </div>
+
 {% endblock %}
