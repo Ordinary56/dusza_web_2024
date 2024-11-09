@@ -40,7 +40,10 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
                 return http.HttpResponseBadRequest("Az űrlap nem helyes")
     return http.HttpResponseBadRequest("Érvénytelen kérés")
 
-
+def index(request: http.HttpRequest) :
+    return render(request, "dusza_app/index.html")
+def register(request: http.HttpRequest) :
+    return render(request, "dusza_app/register.html")
 
 @login_required
 def TeamView(request: http.HttpRequest) -> http.HttpResponse:
