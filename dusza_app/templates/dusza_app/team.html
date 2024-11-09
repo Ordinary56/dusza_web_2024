@@ -18,5 +18,9 @@
 {% block content %}
 <div class="container-fluid">
     <p>csapat</p>
+    {{ teams.teamName }}
+    {%for member in members%}
+    <p>{{member.username}}</p>
+    {%endfor%}
 </div>
 {% endblock %}

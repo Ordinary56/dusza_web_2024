@@ -5,9 +5,10 @@ from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
 import django.http as http
 import django.contrib.auth as auth
+from django.contrib.auth.hashers import make_password
 from .forms import userForm
 from .enums import RoleEnum
-from .models import Team, User
+from .models import Category, ProgLangs, Team, User
 # Create your views here.
 # TODO: add more views
 
@@ -21,15 +22,15 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
             form = userForm(request.POST)
             if form.is_valid():
                 username = form.cleaned_data['username']
-                password = form.cleaned_data['password']
-
-                logged_in_user: User|None = auth.authenticate(Username=username, Password=password)
-                if logged_in_user == None or logged_in_user.is_superuser:
+                password = form.cleaned_data['password'] 
+                logged_in_user = auth.authenticate(request,username=username, password=password)
+                print(username, password,logged_in_user)
+                if logged_in_user == None:
                     return http.HttpResponseNotFound("Ilyen felhasználó nem létezik")
                 auth.login(request, logged_in_user)
 
                 #TODO: redirect to the corresponding URL page 
-                match(logged_in_user.Role):
+                match(logged_in_user.role):
                     case RoleEnum.TEAM:
                         return http.HttpResponseRedirect("/team")
                         pass
@@ -47,15 +48,20 @@ def register(request: http.HttpRequest) :
 
 @login_required
 def TeamView(request: http.HttpRequest) -> http.HttpResponse:
-    return render(request, "dusza_app/team.html")
+    team = Team.objects.filter(user=request.user).first()
+    members = User.objects.all().filter(team=team).exclude(
+        username=request.user.username)
+    return render(request, "dusza_app/team.html", {'teams' : team, 'members' : members})
 
 def SchoolView(request: http. HttpRequest) -> http.HttpResponse:
     #type ingore
     return http.HttpResponse()
 
 def OrganizerView(request: http. HttpRequest) -> http.HttpResponse:
-    user : User|None = request.session.get('user')
-    return http.HttpResponse()
+    user = request.user
+    categories = Category.objects.get()
+    progamming_languages = ProgLangs.objects.get()
+    return render(request, "dusza_app/organizer.html", {'categories' : categories, 'programming_languages' : progamming_languages})
 
 
 def csrf_failure(request: http. HttpRequest) -> http.HttpResponse:
