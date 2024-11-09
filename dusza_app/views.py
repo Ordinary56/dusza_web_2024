@@ -16,8 +16,10 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
         case "POST":
             form = userForm(request.POST)
             if form.is_valid():
-                logged_in_user = User.objects.get(Username=form.username, 
-                                                  Password=form.password)
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
+                logged_in_user = User.objects.filter(Username=username, 
+                                                  Password=password).first()
                 if logged_in_user == None:
                     return http.HttpResponseNotFound("Ez a felhasználó nem létezik")
                 request.session['user'] = logged_in_user
