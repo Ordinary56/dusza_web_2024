@@ -1,8 +1,7 @@
 {% extends "dusza_app/base_template.html" %}
 {% load static %}
-
 {% block content%}
-<div class="container d-flex m-5 justify-content-center align-items-center">
+<div class="container-fluid d-flex m-5 justify-content-center align-items-center">
     <form method="post" action="/">
         {% csrf_token %}
         <h2 class="text-center mb-4">Bejelentkezés</h2>
@@ -20,6 +19,5 @@
         </div>
     </form>
 </div>
-<link rel="stylesheet" href="{% static 'dusza_app/styles.css' %}">
 
 {% endblock %}
