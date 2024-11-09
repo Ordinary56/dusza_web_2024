@@ -1,9 +1,0 @@
-/* styles.css */
-.login_register_button {
-    background-color: green;
-}
-
-.login_register_button:hover {
-    background-color: green; /* Darker shade on hover */
-    cursor: pointer; /* Pointer cursor on hover */
-}

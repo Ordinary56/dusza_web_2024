@@ -5,10 +5,10 @@ class userForm(forms.Form):
     '''
     username = forms.CharField(max_length=255,
                                label="Felhasználónév",
-                               widget=forms.TextInput(attrs={'class' : 'form-control', 'placeholder' : 'Írd be a felhasználóneved'}))
+                               widget=forms.TextInput(attrs={'class' : 'form-control  input100'}))
     password = forms.CharField(max_length=255,
                                label="Jelszó",
-                               widget=forms.PasswordInput(attrs= {'class' : 'form-control'}))
+                               widget=forms.PasswordInput(attrs= {'class' : 'form-control input100'}))
 
 class TeamForm(forms.Form):
     '''
