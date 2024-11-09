@@ -10,8 +10,7 @@ class User(models.Model):
     Id = models.IntegerField(primary_key=True)
     Username = models.CharField(max_length=255)
     Password = models.CharField(max_length=255)
-    Role = models.IntegerField(max_length = 2,
-                               choices= RoleEnum,
+    Role = models.IntegerField(choices= RoleEnum,
                                default= RoleEnum.TEAM)
 
 # Categories which teams can choose 

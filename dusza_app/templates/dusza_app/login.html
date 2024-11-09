@@ -1,0 +1,18 @@
+{% extends "dusza_app/base_template.html" %}
+
+{% block content%}
+<div class="container-fluid d-flex m-5 justify-content-center">
+    <form method="post" action="/">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{form.username.label}}
+            {{form.username}}
+        </div>
+        <div class="mb-3">
+            {{form.password.label}}
+            {{form.password}}
+        </div>
+        <button type="submit" class="btn btn-primary justify-self-center">Bejelentkezés</button>
+    </form>
+</div>
+{% endblock %}

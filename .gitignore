@@ -88,3 +88,6 @@ local_settings.py
 
 .env
 db.sqlite3
+
+### MyPy type checking ###
+mypy.ini

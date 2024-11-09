@@ -1,1 +1,2 @@
-#TODO: add requirements later
+django==5.1.3
+PyMysql==1.1.1
