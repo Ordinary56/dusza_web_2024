@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.views.decorators.csrf import csrf_protect
 
 from django.contrib.auth.decorators import login_required
@@ -21,10 +22,12 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
             if form.is_valid():
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
+
                 logged_in_user: User|None = auth.authenticate(Username=username, Password=password)
                 if logged_in_user == None or logged_in_user.is_superuser:
                     return http.HttpResponseNotFound("Ilyen felhasználó nem létezik")
                 auth.login(request, logged_in_user)
+
                 #TODO: redirect to the corresponding URL page 
                 match(logged_in_user.Role):
                     case RoleEnum.TEAM:
