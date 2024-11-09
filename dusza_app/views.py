@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from django.views.decorators.csrf import csrf_protect
 
 from django.contrib.auth.decorators import login_required
@@ -27,6 +28,7 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
                 if logged_in_user == None:
                     return http.HttpResponseNotFound("Ilyen felhasználó nem létezik")
                 auth.login(request, logged_in_user)
+
                 #TODO: redirect to the corresponding URL page 
                 match(logged_in_user.role):
                     case RoleEnum.TEAM:
@@ -39,7 +41,10 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
                 return http.HttpResponseBadRequest("Az űrlap nem helyes")
     return http.HttpResponseBadRequest("Érvénytelen kérés")
 
-
+def index(request: http.HttpRequest) :
+    return render(request, "dusza_app/index.html")
+def register(request: http.HttpRequest) :
+    return render(request, "dusza_app/register.html")
 
 @login_required
 def TeamView(request: http.HttpRequest) -> http.HttpResponse:

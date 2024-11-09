@@ -4,7 +4,7 @@
 <div class="container-fluid d-flex m-5 justify-content-center">
     <form method="post" action="/">
         {% csrf_token %}
-        <h2 class="text-center mb-4">Bejelentkezés</h2>
+        <h2 class="text-center mb-4">Regisztráció</h2>
         <div class="mb-3">
             {{form.username.label}}
             {{form.username}}
@@ -13,10 +13,8 @@
             {{form.password.label}}
             {{form.password}}
         </div>
-        <button type="submit" class="btn btn-primary justify-self-center">Bejelentkezés</button>
-        <div class="text-center mt-3">
-            <a href="{% url 'register' %}">Regisztráció</a>
-        </div>
+        <button type="submit" class="btn btn-primary justify-self-center">Regisztráció</button>
+        
     </form>
 </div>
 {% endblock %}
