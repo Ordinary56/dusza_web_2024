@@ -9,7 +9,13 @@
     <title>Verseny</title>
 </head>
 <body>
-    <!-- TODO: add navbar -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-2">
+        <a class="navbar-brand" href="#">Verseny</a>
+        <ul class="navbar-nav mr-auto text-white d-flex align-items-center gap-2">
+        {% block navbar %}
+        {% endblock %}
+        </ul>
+     </nav>
     <div id="content">
         {% block content%} {% endblock %}
     </div>
