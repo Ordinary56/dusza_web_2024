@@ -21,7 +21,6 @@ from dusza_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.login, name="login"),
-    path("index/", views.index, name="index"),
-        path("register/", views.register, name="register"),
-
+    path("register/", views.register, name="register"),
+    path("team/", views.TeamView, name="team")
 ]
