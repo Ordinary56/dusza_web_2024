@@ -91,3 +91,7 @@ db.sqlite3
 
 ### MyPy type checking ###
 mypy.ini
+
+
+### vscode ###
+.vscode/
