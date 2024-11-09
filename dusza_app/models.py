@@ -26,7 +26,7 @@ class CustomUserManager(BaseUserManager):
 All database models are defined here
 '''
 class User(AbstractBaseUser):
-    id = models.AutoField(primary_key=True, default=1)
+    id = models.AutoField(primary_key=True)
     username = models.CharField(max_length=255,unique=True)
     password = models.CharField(max_length=128, blank=True, default='') 
     is_active = models.BooleanField(default=True)
@@ -35,12 +35,15 @@ class User(AbstractBaseUser):
     
     role = models.IntegerField(choices= RoleEnum,
                                default= RoleEnum.TEAM)
+    team = models.ForeignKey('Team', on_delete=models.CASCADE, null=True)
+    school = models.ForeignKey('School', on_delete=models.CASCADE, null=True)
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
     objects = CustomUserManager()
     def save(self, *args, **kwargs):
         if(self.password):
-            self.password = make_password(self.password)
+            self.password = make_password(self.password, salt='^13_2',
+                                          hasher='pbkdf2_sha256')
         super().save(*args, **kwargs)
     def has_perm(self, perm, obj=None):
         return self.is_superuser
@@ -58,24 +61,22 @@ class ProgLangs(models.Model):
     language = models.CharField(max_length=255, primary_key=True)
 
 class School(models.Model):
-    id = models.IntegerField(primary_key=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
     schoolName = models.CharField(max_length=255)
     schoolAddress = models.CharField(max_length=255)
     principalName = models.CharField(max_length=255)
     principalEmail = models.EmailField()
 
 class Team(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     # Associated user
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
     teamName = models.CharField(max_length=30)
     mentor = models.CharField(max_length=30)
     school = models.ForeignKey(School, on_delete=models.CASCADE)
 
 class TeamMember(models.Model):
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
     term = models.CharField(max_length=20)
-    extraMember = models.BooleanField(default=  False)
-
+    extraMember = models.BooleanField(default= False)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, null=True)
