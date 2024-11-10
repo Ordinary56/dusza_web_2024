@@ -1,7 +1,7 @@
 {% extends "dusza_app/base_template.html"%}
 
 {%block content %}
-<form action="" >
-
-</form>
+    {% if type == "TeamForm"%}
+        {% include "dusza_app/forms/team_form.html"%}
+    {% else %}
 {% endblock %}
