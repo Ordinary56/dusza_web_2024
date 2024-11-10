@@ -20,7 +20,7 @@ A projekt a következő főbb funkciókat biztosítja:
 A következő funkciók a fejlesztés során megvalósításra kerültek és teljes mértékben működőképesek:
 1. **Bejelentkezés**: A felhasználók biztonságosan be tudnak jelentkezni a saját szerepkörük alapján (csapat, iskola, szervező).
 2. **Regisztráció**: Új csapatok számára lehetőség biztosított a regisztrációra, amely során megadhatják a szükséges adatokat.
-3. **Iskolai Felület**: Az iskolák felülete lehetővé teszi a csapatok jelentkezésének megtekintését és jóváhagyását.
+3. **Iskolai Felület**: Az iskolák felülete lehetővé teszi a csapatok jelentkezésének megtekintése.
 
 ### Bejelentkezéshez Szükséges Teszt Adatok
 A tesztelés során használható felhasználói adatok a következők:
