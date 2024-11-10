@@ -1,5 +1,6 @@
+from dataclasses import fields
 from django import forms
-from dusza_app.models import Category, ProgLangs
+from dusza_app.models import Category, ProgLangs, School
 
 class userForm(forms.Form):
     '''
@@ -31,11 +32,25 @@ class TeamForm(forms.Form):
     category = forms.CharField(max_length=255)
     programming_language = forms.CharField(max_length=30)
 
-class SchoolForm(forms.Form):
+class SchoolForm(forms.ModelForm):
     '''
     This form is responsible for editing an existing school's data  
     '''
-    pass
+    class Meta:
+        model = School
+        fields = ['schoolName', 'schoolAddress', 'principalName', 'principalEmail']
+        labels = {
+            'schoolName' : "Iskola neve",
+            'schoolAdress' : "Iskola címe",
+            'principalName' : "Igazgató neve",
+            'principalEmail' : "Igazgató email címe"
+        }
+        widgets = {
+            'schoolName' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'schoolAddress' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'principalName' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'principalEmail' : forms.EmailInput(attrs={'class' : 'form-control'})
+        }
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
