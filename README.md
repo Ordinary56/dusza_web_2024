@@ -7,6 +7,12 @@ A projekt a következő főbb funkciókat biztosítja:
 - **Iskolák számára**: Az iskolák jóváhagyhatják saját csapataik jelentkezését.
 - **Szervezők számára**: A szervezők ellenőrizhetik és jóváhagyhatják a jelentkezéseket, valamint hiánypótlást kérhetnek a csapatoktól.
 
+## Hogyan kell futtatni?
+1. menj a projekt mappájába (`cd ~/dusza_web_2024`)
+2. aktiváld a virtuális környezetet (`source dusza_venv/bin/activate`)
+3. telepítsd le a szükséges csomagokat, ami a requirements.txt-ben található (`pip install -r reqruirements.txt`)
+4. futtasd gunicorn-al (` unicorn --bind 0.0.0.0:8000 dusza_project_django.wsgi`)
+5. A szerver a 8000-es porton fut
 ## Csapattagok
 
 - **Balog Tamás**
