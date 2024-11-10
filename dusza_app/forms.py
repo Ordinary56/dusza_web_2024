@@ -1,4 +1,6 @@
 from django import forms
+from dusza_app.models import Category, ProgLangs
+
 class userForm(forms.Form):
     '''
     This form is responsible for handling user login
@@ -34,8 +36,24 @@ class SchoolForm(forms.Form):
     This form is responsible for editing an existing school's data  
     '''
     pass
-class CategoryForm(forms.Form):
-    category = forms.CharField(max_length=255)
+class CategoryForm(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['category']
+        labels = {
+            'category' : "Kategória"
+        }
+        widgets = {
+            'category' : forms.TextInput(attrs={'class' : 'form-control'})
+        }
 
-class ProgLangForm(forms.Form):
-    programming_language = forms.CharField(max_length=30)
+class ProgLangForm(forms.ModelForm):
+    class Meta:
+        model = ProgLangs
+        fields = ['language']
+        labels = {
+            'language' : 'Programozási nyelv'
+        },
+        widgets = {
+            'language' : forms.TextInput(attrs={'class' : 'form-control'})
+        }

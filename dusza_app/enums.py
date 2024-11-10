@@ -6,6 +6,7 @@ Any necessary enums that exists in the database are defined here
 '''
 
 class RoleEnum(models.IntegerChoices):
-        TEAM = 0, _("CSAPAT")
-        ORGANIZER = 1, _("SZERVEZŐ")
-        SCHOOL = 2, _("ISKOLA")
+        TEAM = 0, 
+        ORGANIZER = 1, 
+        SCHOOL = 2,
+        ADMIN = 3
