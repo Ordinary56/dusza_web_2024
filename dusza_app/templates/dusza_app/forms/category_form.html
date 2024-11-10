@@ -1,7 +1,7 @@
 
 <h2>Kategória módosítása</h2>
 
-<form action="" method="post">
+<form action="/{%if create%}create{%else%}modify{%endif%}" method="post">
     {% csrf_token %}
        <div class="form-group p-2">
         {{form.category.label}}

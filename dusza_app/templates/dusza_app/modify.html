@@ -1,7 +1,14 @@
 {% extends "dusza_app/base_template.html"%}
 
 {%block content %}
-    {% if type == "TeamForm"%}
-        {% include "dusza_app/forms/team_form.html"%}
-    {% else %}
+{{type}}
+{% if type == "TeamForm"%}
+    {% include "dusza_app/forms/team_form.html"%}
+{% elif type == "ProgLangForm" %}
+    {% include "dusza_app/forms/programming_language_form.html"%}
+{% elif type == "CategoryForm" %}
+    {% include "dusza_app/forms/category_form.html"%}
+{%elif type == "SchoolForm"%}
+{%include "dusza_app/forms/school_form.html"%}
+{% endif %}
 {% endblock %}

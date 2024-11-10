@@ -1,3 +1,10 @@
 
-<h2>Csapat Módosítása</h2>
 
+<h2>Csapat {%if create%}Létrehozása{%else%}módosítása{%endif%}</h2>
+
+<form action="" method="post">
+    {{form.child_form.as_p}}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">{%if create%}Létrehozás{%else%}módosítás{%endif%}</button>
+    <button type="button" class="btn btn-secondary">Mégse</button>
+</form>

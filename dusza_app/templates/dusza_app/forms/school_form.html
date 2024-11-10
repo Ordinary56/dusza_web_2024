@@ -1,22 +1,26 @@
 
-<h2>Iskola módosítása</h2>
+<h2>Iskola {%if create%}Létrehozása{%else%}módosítása{%endif%}</h2>
 
-<form action="" method="post">
+<form action="/{%if create%}create/{%else%}modify/{%endif%}" method="post">
+    {%csrf_token%}
+    <div class="control-group">
+        {{form.child_form.as_p}}
+    </div>
        <div class="control-group">
-        {{form.schoolName.label}}
-        {{form.schoolName}}
+        {{form.school_name.label}}
+        {{form.school_name}}
        </div> 
        <div class="control-group">
-        {{form.schoolAddress.label}}
-        {{form.schoolAddress}}
+        {{form.school_address.label}}
+        {{form.school_address}}
        </div>
        <div class="control-group">
-        {{form.principalName.label}}
-        {{form.principalName}}
+        {{form.principal_name.label}}
+        {{form.principal_name}}
        </div>
        <div class="control-group">
-        {{form.principalAddress.label}}
-        {{form.principalAddress}}
-       </div>
-       <button type="submit">Módosítás</button>
+        {{form.principal_email.label}}
+        {{form.principal_email}}
+       <button type="submit" class="btn btn-primary">{%if create%}Létrehozás{%else%}módosítás{%endif%}</button>
+       <button type="button" class="btn btn-secondary">Mégse</button>
 </form>

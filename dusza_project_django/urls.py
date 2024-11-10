@@ -16,21 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
 from django.contrib.auth.views import LogoutView
 from dusza_app import views 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path("", views.login, name="login"),
-    path("register/", views.register, name="register"),
     path("team/", views.TeamView, name="team"),
     path("modify/", views.modify, name="modify"),
     path("organizer/", views.OrganizerView, name="organizer"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path("create/", views.create, name="create"),
     path("school/", views.SchoolView, name="school"),
-    path("delete/<str:object_type>/<str:identifier>/", name="delete"),
-    path("create/<str:object_type>/<str:value>/", views.create, name="create")
-    path("school/", views.SchoolView, name="school"),
-    path("delete/<str:object_type>/<str:identifier>/", views.delete,name="delete"),
-    path("create/<str:object_type>/<str:value>/", views.create, name="create")
+    path("delete/", views.delete,name="delete"),
+    path("export/", views.export,name="export")
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        path('admin/', admin.site.urls),
+    ]

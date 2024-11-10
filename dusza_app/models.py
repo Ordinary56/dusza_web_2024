@@ -1,3 +1,4 @@
+from typing import Collection
 from django.db import models
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import AbstractUser, PermissionsMixin
@@ -5,7 +6,9 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 from dusza_app.enums import RoleEnum, StatusEnum
 
 # Create your models here.
-
+class DeadLine(models.Model):
+    startDate = models.DateField(primary_key=True, unique=True)
+    endDate = models.DateField(unique=True)
 
 
 class User(AbstractUser, PermissionsMixin):

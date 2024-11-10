@@ -1,12 +1,13 @@
 
-<h2>Progamozási nyelv módosítása</h2>
+<h2>Progamozási nyelv {%if create%}létrehozása{%else%}módosítása{%endif%}</h2>
 
-<form action="" method="post">
+<form action="{%if create%}/create/{%else%}/modify/{%endif%}" method="post">
+       {% csrf_token %}
        <div class="form-group">
         {{form.language.label}}
         {{form.language}}
        </div> 
-       <button type="submit" class="btn btn-primary">Módosítás</button>
+       <button type="submit" class="btn btn-primary">{%if create%}Létrehozás{%else%}Módosítás{%endif%}</button>
        <button type="button" class="btn btn-secondary"
        onclick="location.href = '{%url 'organizer'%}'">Mégse</button>
 </form>

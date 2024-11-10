@@ -1,55 +1,40 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.decorators import login_required
-import django.http as http
-import django.contrib.auth as auth
 from django.contrib.auth.hashers import make_password
+from django.forms.models import model_to_dict
 from .forms import *
 from .enums import RoleEnum
 from .models import *
+import django.http as http
+import pandas as pd
+import django.contrib.auth as auth
 # Create your views here.
 # TODO: add more views
 
-@csrf_protect
 def login(request : http.HttpRequest) -> http.HttpResponse:
+    print(request.method)
     match(request.method):
         case "GET":
-            form = userForm()
+            form = UserForm()
             return render(request, "dusza_app/login.html", {'form' : form})
         case "POST":
-            form = userForm(request.POST)
-            if form.is_valid():
-                username = form.cleaned_data['username']
-                password = form.cleaned_data['password']
-                logged_in_user = auth.authenticate(request, username=username, password=password)
-                # Sajnos admint is be lehetne írni :(
-                if logged_in_user == None or logged_in_user.is_superuser: #type: ignore
-                    return http.HttpResponseNotFound("Hibás felhasználónév vagy jelszó")
-                auth.login(request, logged_in_user)
-                
-                # MyPy itt hibát dob
-                match(logged_in_user.role): #type: ignore
-                    case RoleEnum.TEAM:
-                        return http.HttpResponseRedirect("/team")
-                    case RoleEnum.SCHOOL:
-                        return http.HttpResponseRedirect("/school")
-                        pass
-                    case RoleEnum.ORGANIZER:
-                        return http.HttpResponseRedirect("/organizer")
-                        pass
-                return http.HttpResponseBadRequest("Az űrlap nem helyes")
-    return http.HttpResponseBadRequest("Érvénytelen kérés")
-
-
-
-@csrf_protect
-def register(request : http.HttpRequest) -> http.HttpResponse:
-    match(request.method):
-        case "GET":
-            form = userForm()
-            return render(request, "dusza_app/register.html", {'form' : form})
-    return http.HttpResponseBadRequest("Érvénytelen kérés")
-       
+            username = request.POST['username']
+            password = request.POST['password']
+            logged_in_user = auth.authenticate(request, username=username, password=password)
+            # Sajnos admint is be lehetne írni :(
+            if logged_in_user == None or logged_in_user.is_superuser: #type: ignore
+                return http.HttpResponseNotFound("Hibás felhasználónév vagy jelszó")
+            auth.login(request, logged_in_user)
+            # MyPy itt hibát dob
+            match(logged_in_user.role): #type: ignore
+                case RoleEnum.TEAM:
+                    return http.HttpResponseRedirect("/team")
+                case RoleEnum.SCHOOL:
+                    return http.HttpResponseRedirect("/school")
+                case RoleEnum.ORGANIZER:
+                    return http.HttpResponseRedirect("/organizer")
+    return http.HttpResponse("Érvénytelen kérés")
 
 @login_required
 def TeamView(request: http.HttpRequest) -> http.HttpResponse:
@@ -106,45 +91,85 @@ def modify(request: http.HttpRequest) -> http.HttpResponse:
     return render(request, "dusza_app/modify.html", context)
 
 @login_required
-def delete(request : http.HttpRequest, object_type: str, identifier : str) -> http.HttpResponse:
+def delete(request : http.HttpRequest) -> http.HttpResponse:
     user : User = request.user
-    match(object_type):
+    data = request.GET.dict()
+    match(data['source_type']):
         case "category":
-            obj = get_object_or_404(Category, category=identifier)
+            obj = get_object_or_404(Category, category=data['category'])
             obj.delete()
             return redirect("organizer")
         case "programming_language":
-            obj = get_object_or_404(ProgLangs, language=identifier)
-            if Team.objects.contains(programming_language=obj):
+            obj = get_object_or_404(ProgLangs, language=data['language'])
+            if Team.objects.all().contains(programming_language=obj):
                 return http.HttpResponseNotAllowed("Ezt a nyelvet nem törölheted, mert ezzel a nyelvvel már regisztrált egy csapat")
             obj.delete()
             return redirect("organizer")
-    return http.HttpResponseForbidden("Nem törölhetsz semmit ha nem vagy bejelentkezve")
+    return http.HttpResponseForbidden("Nem törölhetsz semmit, nem vagy bejelentkezve")
 
 @login_required
-def create(request: http.HttpRequest, object_type:str, value: str) -> http.HttpResponse:
-    match(object_type):
-        case "programming_language":
-            new_obj = ProgLangs.objects.create(language=value)
+def create(request: http.HttpRequest) -> http.HttpResponse:
+
+    data = request.GET.dict()
+    form = None
+    context = {
+        'create' : 1
+    }
+    if request.method == "POST":
+        payload = request.POST.dict()
+        print(request.POST)
+        print(payload)
+        match(list(payload)[1]):
+            case "category":
+                Category.objects.create(category=payload['category'])
+            case "language":
+                new_obj = ProgLangs.objects.create(language=payload['language'])
+                print(new_obj)
+                new_obj.save()
+            case "school":
+                User.objects.create(new_user)
+                School.objects.create(form.cleaned_data[2:])
+            case _:
+                pass
+        if(request.user.role == RoleEnum.ORGANIZER):
             return redirect("organizer")
-        case "category":
-            new_obj = Category.objects.create(category=value)
-            return redirect("organizer")
-        case "team":
-            extracted_values = value.split('_')
-            pass
-        case "school":
-            pass
-        case _:
-            return http.HttpResponseBadRequest()
-    return http.HttpResponseForbidden("Nem hozhatsz létre semmit, mert nem vagy bejelentkezve")
+        else:
+            return redirect("school")
+        
+    elif request.method == "GET":
+        match(data['source_type']):
+            case "school":
+                form = SchoolForm()
+            case "category" :
+                form = CategoryForm()
+            case "programming_language":
+                form = ProgLangForm()
+            case "team":
+                categories = tuple((index, category) for index,category in enumerate(Category.objects.all()))
+                languages = tuple((index, lang) for index, lang in enumerate(ProgLangs.objects.all()))
+                form = TeamForm(categories=categories, languages=languages)
+        context['form'] = form
+        context['type'] = type(form).__name__
+        print(context)
+        return render(request, "dusza_app/modify.html", context)
+    return http.HttpResponseForbidden("Nem vagy bejelentkezve")
 
 @login_required
 def export(request: http.HttpRequest) -> http.HttpResponse:
-    
+    '''
+    Az adott csapat adatait exportálja
+    '''
+    id = request.GET.get('id')
+    if id:
+        team = get_object_or_404(Team, id=int(id))
+        df = pd.DataFrame([model_to_dict(team)])
+        response = http.HttpResponse(content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+        response['Content-Disposition'] = f"attachment; filename={team.team_name}_data.xlsx"
+        with pd.ExcelWriter(response, engine='openpyxl') as writer:
+            df.to_excel(writer, index=False, sheet_name='Data')
+        return response
     return http.HttpResponse()
 
-logout = lambda request : auth.logout(request) 
 # TODO: make custom views for failures 
 def csrf_failure(request: http. HttpRequest) -> http.HttpResponse:
     return http.HttpResponse("CSRF token érvénytelen vagy lejárt, kérlek frissítsd újra az oldalt")

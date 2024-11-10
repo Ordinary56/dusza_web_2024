@@ -3,8 +3,22 @@
 {%block title%} Szervezői oldal {%endblock%}
 {%block navbar%}
 <li class="nav-item">
-    <a href="" class="text-decoration-none text-black nav_text">Új csapat regisztrálása</a>
+    <a href="{%url 'create'%}?source_type=team" class="text-decoration-none text-black nav_text">Új csapat regisztrálása</a>
 </li>
+
+<li class="nav-item">
+    <a href="{%url 'create'%}?source_type=programming_language" class="text-decoration-none text-black nav_text">Új nyelv felvétele</a>
+</li>
+
+<li class="nav-item">
+    <a href="{%url 'create'%}?source_type=category" class="text-decoration-none text-black nav_text">Új kategória felvétele</a>
+</li>
+
+
+<li class="nav-item">
+<a href="{%url 'create'%}?source_type=school" class="text-decoration-none text-black nav_text">Új iskola regisztrálása</a>
+</li>
+
 <li class="nav-item">
     <form action="{% url 'logout'%}" method="post">
         {% csrf_token%}
@@ -69,7 +83,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="">
+                        <a href="{%url 'delete'%}?source_type=category&category={{category.category}}">
                             <span class="fa-solid fa-trash"></span>
                         </a>
                     </li>
@@ -106,7 +120,7 @@
         <td>
             <ul class="d-inline-flex gap-5 justify-content-center" style="list-style-type: none;">
                 <li>
-                    <a href="{% url 'modify'%}?source_type=category&category={{category.category}}">
+                    <a href="{% url 'export'%}?id={{forloop.counter}}">
                         <span class="fa-solid fa-file-export"></span>
                     </a>
                 </li>
@@ -142,10 +156,10 @@
 {%for school in schools%}
     <tr>
         <th scope="row">{{forloop.counter}}</th>
-        <td>{{school.schoolName}}</td>
-        <td>{{school.schoolAddress}}</td>
-        <td>{{school.principalName}}</td>
-        <td>{{school.principalAddress}}</td>
+        <td>{{school.school_name}}</td>
+        <td>{{school.school_address}}</td>
+        <td>{{school.principal_name}}</td>
+        <td>{{school.principal_address}}</td>
     </tr>
     {%endfor%}
 </tbody>
