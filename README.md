@@ -7,13 +7,14 @@ A projekt a következő főbb funkciókat biztosítja:
 - **Iskolák számára**: Az iskolák jóváhagyhatják saját csapataik jelentkezését.
 - **Szervezők számára**: A szervezők ellenőrizhetik és jóváhagyhatják a jelentkezéseket, valamint hiánypótlást kérhetnek a csapatoktól.
 
----
-
 ## Csapattagok
 
 - **Balog Tamás**
 - **Papp László Levente**
 - **Nagy Hunor József**
+
+## Nehézségek
+
 
 ## Működő Funkciók
 A következő funkciók a fejlesztés során megvalósításra kerültek és teljes mértékben működőképesek:
