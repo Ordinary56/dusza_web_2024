@@ -41,9 +41,18 @@ def login(request : http.HttpRequest) -> http.HttpResponse:
                 return http.HttpResponseBadRequest("Az űrlap nem helyes")
     return http.HttpResponseBadRequest("Érvénytelen kérés")
 
-def register(request):
-    return render(request, "register.html")
 
+
+@csrf_protect
+def register(request : http.HttpRequest) -> http.HttpResponse:
+    match(request.method):
+        case "GET":
+            form = userForm()
+            return render(request, "dusza_app/register.html", {'form' : form})
+       
+
+def index(request: http.HttpRequest) :
+    return render(request, "dusza_app/index.html")
 @login_required
 def TeamView(request: http.HttpRequest) -> http.HttpResponse:
     logged_user : User = request.user
