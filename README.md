@@ -33,6 +33,12 @@ A következő funkciók a fejlesztés során megvalósításra kerültek és tel
 4. **Programozási nyelv**: Új programozási nyelv hozzáadása / törlése.
 5. **Exportálás**: A szervező képes a csapat adatainak kiexportálására.
 
+## Továbbfejlesztési ötletek
+1. Akadálymentesség (megjelenő szövegbuborékok ikonok felett, )
+2. UI továbbfeljesztése (egység színvilág, jobban átláthó felhasználói felület)
+3. Jelszó visszaállítás a felhasználók számára
+4. Hiánypótlás esetén email küldése a csapat összes tagjának és a felkészítő tanárnak
+
 ## Bejelentkezéshez Szükséges Teszt Adatok
 A tesztelés során használható felhasználói adatok a következők:
 
