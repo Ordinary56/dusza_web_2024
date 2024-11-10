@@ -38,11 +38,7 @@ class SchoolForm(forms.ModelForm):
     '''
     class Meta:
         model = School
-<<<<<<< HEAD
         fields = ['school_name', 'school_address', 'principal_name', 'principal_email']
-=======
-        fields = ['schoolName', 'schoolAddress', 'principalName', 'principalEmail']
->>>>>>> 6de661303237e7022b921594cc171dee5a57e54b
         labels = {
             'schoolName' : "Iskola neve",
             'schoolAdress' : "Iskola címe",

@@ -28,9 +28,6 @@ urlpatterns = [
     path("organizer/", views.OrganizerView, name="organizer"),
     path("logout/", LogoutView.as_view(), name="logout"),
     path("school/", views.SchoolView, name="school"),
-    path("delete/<str:object_type>/<str:identifier>/", name="delete"),
-    path("create/<str:object_type>/<str:value>/", views.create, name="create")
-    path("school/", views.SchoolView, name="school"),
     path("delete/<str:object_type>/<str:identifier>/", views.delete,name="delete"),
-    path("create/<str:object_type>/<str:value>/", views.create, name="create")
+    path("create/<str:object_type>/<str:value>/", views.create, name="create"),
 ]
