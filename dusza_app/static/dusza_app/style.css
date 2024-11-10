@@ -6,3 +6,7 @@
     background: linear-gradient(-135deg, #5A4FCF, #9B5DE5);
    border-bottom: 1px solid rgb(255, 192, 192);
 }
+.nav_text{
+    font-weight:bold;
+    font-size: 20;
+}
