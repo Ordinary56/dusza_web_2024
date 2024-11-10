@@ -1,19 +1,21 @@
 {% extends "dusza_app/base_template.html"%}
+{% load static %}
+{%block title%} Szervezői oldal {%endblock%}
 {%block navbar%}
 <li class="nav-item">
-    <a href="" class="text-decoration-none text-white">Új csapat regisztrálása</a>
+    <a href="" class="text-decoration-none text-black nav_text">Új csapat regisztrálása</a>
 </li>
 <li class="nav-item">
     <form action="{% url 'logout'%}" method="post">
         {% csrf_token%}
-        <button type="submit" class="btn my-0 text-white flex-end">Kijelentkezés</button>
+        <button type="submit" class="btn my-0 text-black flex-end" style="font-weight: bold; font-size: 20px;">Kijelentkezés</button>
     </form>
 </li>
 {%endblock%}
 
 {%block content %}
 <h2 class="my-5 text-center">Programozási nyelvek</h2>
-<table class="table table-dark m-auto w-50 ">
+<table class="table table-dark m-auto w-50">
 <thead>
     <tr>
         <th scope="col">#</th>
@@ -46,8 +48,8 @@
 </table>
 
 <h2 class="my-5 text-center">Kategóriák</h2>
-<table class="table table-dark m-5 m-auto w-80">
-<thead>
+<table class="table table-dark m-5 m-auto w-50">
+<thead> 
     <tr>
         <th scope="col">#</th>
         <th scope="col">Kategória</th>
