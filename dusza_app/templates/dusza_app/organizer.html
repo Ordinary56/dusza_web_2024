@@ -29,7 +29,7 @@
 
 {%block content %}
 <h2 class="my-5 text-center">Programozási nyelvek</h2>
-<table class="table table-dark m-auto w-50">
+<table class="table table-dark m-auto w-75">
 <thead>
     <tr>
         <th scope="col">#</th>
@@ -62,7 +62,7 @@
 </table>
 
 <h2 class="my-5 text-center">Kategóriák</h2>
-<table class="table table-dark m-5 m-auto w-50">
+<table class="table table-dark m-5 m-auto w-75">
 <thead> 
     <tr>
         <th scope="col">#</th>
@@ -93,8 +93,8 @@
     {%endfor%}
 </tbody>
 </table>
-<h2>Csapatok</h2>
-<table class="table table-dark m-5 m-auto w-80">
+<h2 class="my-5 text-center">Csapatok</h2>
+<table class="table table-dark m-5 m-auto w-75">
 <thead>
     <tr>
         <th scope="col">#</th>
@@ -113,8 +113,11 @@
     <tr>
         <th scope="row">{{forloop.counter}}</th>
         <td>{{team.team_name}}</td>
+        <td></td>
+        <td></td>
         <td>{{team.mentor}}</td>
         <td>{{team.category}}</td>
+        <td></td>
         <td>{{team.language}}</td>
         {{team.status}}
         <td>
@@ -141,8 +144,8 @@
 </tbody>
 </table>
 
-<h2>Iskolák</h2>
-<table class="table table-dark m-5 m-auto w-80">
+<h2 class="my-5 text-center">Iskolák</h2>
+<table class="table table-dark m-5 m-auto w-75">
 <thead>
     <tr>
         <th scope="col">#</th>
