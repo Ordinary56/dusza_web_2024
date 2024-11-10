@@ -22,17 +22,18 @@ A következő funkciók a fejlesztés során megvalósításra kerültek és tel
 2. **Regisztráció**: Új csapatok számára lehetőség biztosított a regisztrációra, amely során megadhatják a szükséges adatokat.
 3. **Iskolai Felület**: Az iskolák felülete lehetővé teszi a csapatok jelentkezésének megtekintése.
 
-### Bejelentkezéshez Szükséges Teszt Adatok
+## Bejelentkezéshez Szükséges Teszt Adatok
 A tesztelés során használható felhasználói adatok a következők:
 
-- **Felhasználónév:** `kovacs.peter`  
+- **Szerepkör:** csapat  
+  **Felhasználónév:** `kovacs.peter`  
   **Jelszó:** `jelszo123`  
-  **Szerepkör:** csapat
 
-- **Felhasználónév:** `nagy.janos`  
+- **Szerepkör:** szervező  
+  **Felhasználónév:** `nagy.janos`  
   **Jelszó:** `jelszo456`  
-  **Szerepkör:** szervező
 
-- **Felhasználónév:** `kiss.anna`  
+- **Szerepkör:** iskola  
+  **Felhasználónév:** `kiss.anna`  
   **Jelszó:** `jelszo789`  
-  **Szerepkör:** iskola
+
