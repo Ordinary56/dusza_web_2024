@@ -1,13 +1,13 @@
 
-<h2>Kategória módosítása</h2>
+<h2  class="my-5 text-center">Kategória módosítása</h2>
 
-<form action="" method="post">
+<form action="" method="post" class=" m-5 m-auto w-50">
     {% csrf_token %}
        <div class="form-group p-2">
         {{form.category.label}}
         {{form.category}}
        </div> 
-       <button type="submit" class="btn btn-primary">Módosítás</button>
+       <button type="submit" class="btn" style="background-color: #57b846;">Módosítás</button>
        <button type="button" class="btn btn-secondary" 
        onclick="location.href='{% url 'organizer' %}'">Mégse</button>
 </form>
