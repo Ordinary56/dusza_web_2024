@@ -27,5 +27,7 @@ urlpatterns = [
     path("modify/", views.modify, name="modify"),
     path("organizer", views.OrganizerView, name="Organizer"),
     path("logout/", LogoutView.as_view(), name="logout"),
-    path("school/", views.SchoolView, name="school")
+    path("school/", views.SchoolView, name="school"),
+    path("delete/<str:object_type>/<str:identifier>/", views.delete,name="delete"),
+    path("create/<str:object_type>/<str:value>/", views.create, name="create")
 ]

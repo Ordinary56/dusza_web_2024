@@ -35,7 +35,21 @@ class SchoolForm(forms.Form):
     '''
     This form is responsible for editing an existing school's data  
     '''
-    pass
+    class Meta:
+        model = School
+        fields = ['school_name', 'school_address', 'principal_name', 'principal_email']
+        labels = {
+            'schoolName' : "Iskola neve",
+            'schoolAdress' : "Iskola címe",
+            'principalName' : "Igazgató neve",
+            'principalEmail' : "Igazgató email címe"
+        }
+        widgets = {
+            'schoolName' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'schoolAddress' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'principalName' : forms.TextInput(attrs={'class' : 'form-control'}),
+            'principalEmail' : forms.EmailInput(attrs={'class' : 'form-control'})
+        }
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
