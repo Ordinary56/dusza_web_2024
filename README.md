@@ -15,12 +15,17 @@ A projekt a következő főbb funkciókat biztosítja:
 
 ## Nehézségek
 
+- **A pénteki nap iskolával és haza utazással telt.**
+- **Az egyik csapattagunk nem állt a helyzet magaslatán (röviden nem vett részt a munkában minden nyöszögtetés ellenére) ezért rá nem lehetett számítani.**
 
 ## Működő Funkciók
+
 A következő funkciók a fejlesztés során megvalósításra kerültek és teljes mértékben működőképesek:
 1. **Bejelentkezés**: A felhasználók biztonságosan be tudnak jelentkezni a saját szerepkörük alapján (csapat, iskola, szervező).
-2. **Regisztráció**: Új csapatok számára lehetőség biztosított a regisztrációra, amely során megadhatják a szükséges adatokat.
+2. **Kategória**: Új kategória hozzáadása / törlése.
 3. **Iskolai Felület**: Az iskolák felülete lehetővé teszi a csapatok jelentkezésének megtekintése.
+4. **Programozási nyelv**: Új programozási nyelv hozzáadása / törlése.
+5. **Exportálás**: A szervező képes a csapat adatainak kiexportálására.
 
 ## Bejelentkezéshez Szükséges Teszt Adatok
 A tesztelés során használható felhasználói adatok a következők:
