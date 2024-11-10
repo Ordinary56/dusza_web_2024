@@ -31,7 +31,7 @@
         <td>
             <ul class="d-inline-flex gap-5 justify-content-center" style="list-style-type: none;">
                     <li>
-                        <a href="">
+                        <a href="{% url 'modify'%}?source_type=programming_language&language={{language.language}}">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                     </li>
@@ -62,19 +62,90 @@
         <th scope="row">{{forloop.counter}}</th>
         <td>{{category.category}}</td>
         <td>
-            <ul class="d-inline-flex">
+            <ul class="d-inline-flex gap-5 justify-content-center" style="list-style-type: none;">
                     <li>
-                        <a href="">
-                            <span class="glyphicon glyphicon-pencil"></span>
+                        <a href="{% url 'modify'%}?source_type=category&category={{category.category}}">
+                            <span class="fa-solid fa-pencil"></span>
                         </a>
                     </li>
                     <li>
                         <a href="">
-                            <span class="glyphicon glyphicon-trash"></span>
+                            <span class="fa-solid fa-trash"></span>
                         </a>
                     </li>
             </ul>
         </td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+<h2>Csapatok</h2>
+<table class="table table-dark m-5 m-auto w-80">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Csapat Neve</th>
+        <th scope="col">Csapattagok</th>
+        <th scope="col">Évfolyam</th>
+        <th scope="col">Felkészítő tanár</th>
+        <th scope="col">Választott Kategória</th>
+        <th scope="col">Nyelv</th>
+        <th scope="col">Állapot</th>
+        <th scope="col">Műveletek</th>
+    </tr>
+</thead>
+<tbody>
+{%for team in teams%}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{team.team_name}}</td>
+        <td>{{team.mentor}}</td>
+        <td>{{team.category}}</td>
+        <td>{{team.language}}</td>
+        {{team.status}}
+        <td>
+            <ul class="d-inline-flex gap-5 justify-content-center" style="list-style-type: none;">
+                <li>
+                    <a href="{% url 'modify'%}?source_type=category&category={{category.category}}">
+                        <span class="fa-solid fa-file-export"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="fa-solid fa-check" aria-hidden="true"></span>
+                    </a>
+                </li> 
+                <li>
+                    <a href="">
+                        <span class="fa-solid fa-exclamatin-circle" aria-hidden="true"></span>
+                    </a>
+                </li>
+        </ul>
+        </td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+<h2>Iskolák</h2>
+<table class="table table-dark m-5 m-auto w-80">
+<thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Iskola Neve</th>
+        <th scope="col">Iskola Címe</th>
+        <th scope="col">Kapcsolatfenntartó neve</th>
+        <th scope="col">Kapcsolatfenntartó címe</th>
+    </tr>
+</thead>
+<tbody>
+{%for school in schools%}
+    <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{school.schoolName}}</td>
+        <td>{{school.schoolAddress}}</td>
+        <td>{{school.principalName}}</td>
+        <td>{{school.principalAddress}}</td>
     </tr>
     {%endfor%}
 </tbody>
