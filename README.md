@@ -27,13 +27,29 @@ A tesztelés során használható felhasználói adatok a következők:
 
 - **Szerepkör:** csapat  
   **Felhasználónév:** `kovacs.peter`  
-  **Jelszó:** `jelszo123`  
+  **Jelszó:** `jelszo123`
+  
+- **Szerepkör:** csapat  
+  **Felhasználónév:** `kovacs.adam`  
+  **Jelszó:** `jelszo456`
+    
+- **Szerepkör:** csapat
+  **Felhasználónév:** `kovacs.ede`  
+  **Jelszó:** `jelszo789`  
 
 - **Szerepkör:** szervező  
   **Felhasználónév:** `nagy.janos`  
-  **Jelszó:** `jelszo456`  
+  **Jelszó:** `jelszo101`  
+
+- **Szerepkör:** szervező  
+  **Felhasználónév:** `nagy.peter`  
+  **Jelszó:** `jelszo112`
 
 - **Szerepkör:** iskola  
   **Felhasználónév:** `kiss.anna`  
-  **Jelszó:** `jelszo789`  
+  **Jelszó:** `jelszo789`
+  
+- **Szerepkör:** iskola  
+  **Felhasználónév:** `kiss.albert`  
+  **Jelszó:** `jelszo131`  
 
