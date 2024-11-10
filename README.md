@@ -47,9 +47,9 @@ A tesztelés során használható felhasználói adatok a következők:
 
 - **Szerepkör:** iskola  
   **Felhasználónév:** `kiss.anna`  
-  **Jelszó:** `jelszo789`
+  **Jelszó:** `jelszo131`
   
 - **Szerepkör:** iskola  
   **Felhasználónév:** `kiss.albert`  
-  **Jelszó:** `jelszo131`  
+  **Jelszó:** `jelszo141`  
 
