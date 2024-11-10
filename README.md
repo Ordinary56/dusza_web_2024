@@ -32,7 +32,7 @@ A tesztelés során használható felhasználói adatok a következők:
 - **Szerepkör:** csapat  
   **Felhasználónév:** `kovacs.adam`  
   **Jelszó:** `jelszo456`
-    
+      
 - **Szerepkör:** csapat
   **Felhasználónév:** `kovacs.ede`  
   **Jelszó:** `jelszo789`  
