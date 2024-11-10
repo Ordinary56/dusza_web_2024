@@ -24,6 +24,15 @@ A következő funkciók a fejlesztés során megvalósításra kerültek és tel
 
 ### Bejelentkezéshez Szükséges Teszt Adatok
 A tesztelés során használható felhasználói adatok a következők:
-- Felhaználónév: kovacs.peter Jelszó: jelszo123 Szerepkör: csapat
-- Felhaználónév: nagy.janos Jelszó: jelszo456 Szerepkör: szervező
-- Felhaználónév: kiss.anna Jelszó: jelszo789 Szerepkör: iskola
+
+- **Felhasználónév:** `kovacs.peter`  
+  **Jelszó:** `jelszo123`  
+  **Szerepkör:** csapat
+
+- **Felhasználónév:** `nagy.janos`  
+  **Jelszó:** `jelszo456`  
+  **Szerepkör:** szervező
+
+- **Felhasználónév:** `kiss.anna`  
+  **Jelszó:** `jelszo789`  
+  **Szerepkör:** iskola
